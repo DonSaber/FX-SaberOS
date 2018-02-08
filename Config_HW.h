@@ -1,7 +1,7 @@
 /*
  * Config_HW.h
  *
- * Created on: 30 March 2017
+ * Created on: 30 March 2017 / Edit: DonSaber - Feb 7 2018
  * author:    Andras Kun (kun.andras@yahoo.de)
  * Source :  https://github.com/Protonerd/FX-SaberOS
  * This tab contains all settings necessary to define your saber board's electronic hardware configuration
@@ -21,8 +21,8 @@
  *  If you have a home-brew solution using the Arduino Nano, choose DIYINO_PRIME below
  */
 
-//#define DIYINO_PRIME
-#define DIYINO_STARDUST
+#define DIYINO_PRIME
+//#define DIYINO_STARDUST
 
 /***** BOARD PINOUT DEFINITIONS ******/
 
