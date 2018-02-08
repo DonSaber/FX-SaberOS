@@ -1,6 +1,6 @@
 /*
  * Config.h
- *
+ * Edit: DonSaber - Feb 7 2018
  * author: 		Sebastien CAPOU (neskweek@gmail.com) and Andras Kun (kun.andras@yahoo.de)
  * Source :  https://github.com/Protonerd/FX-SaberOS
  */
