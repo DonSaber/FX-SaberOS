@@ -1,7 +1,7 @@
 /*
    FX-SaberOS V1.0
 
-   released on: 7 October 2017
+   released on: 7 October 2017 / Edit: DonSaber - Feb 7 2018
    author: 		Sebastien CAPOU (neskweek@gmail.com) and Andras Kun (kun.andras@yahoo.de)
    Source : 	https://github.com/Protonerd/FX-SaberOS
    Description:	Operating System for Arduino based LightSaber
@@ -136,6 +136,7 @@ OneButton lockupButton(AUX_BUTTON, true);
  * ConfigMode Variables
  */
 int8_t modification = 0;
+int8_t orientation = 0;
 int8_t prev_modification = 0;
 int16_t value = 0;
 uint8_t menu = 0;
@@ -313,12 +314,12 @@ Serial.println(configAdress);
 #endif
 #else // assign calibrated offset values here:
   /* UNIT1 */
-  mpu.setXAccelOffset(46);
-  mpu.setYAccelOffset(-4942);
-  mpu.setZAccelOffset(4721);
-  mpu.setXGyroOffset(23);
-  mpu.setYGyroOffset(-11);
-  mpu.setZGyroOffset(44);
+  mpu.setXAccelOffset(-4097);
+  mpu.setYAccelOffset(-2846);
+  mpu.setZAccelOffset(272);
+  mpu.setXGyroOffset(42);
+  mpu.setYGyroOffset(-47);
+  mpu.setZGyroOffset(-24);
 #endif
 
   // make sure it worked (returns 0 if so)

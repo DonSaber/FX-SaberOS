@@ -1,7 +1,7 @@
 /*
  * Buttons.c
  *
- *  Created on: 21 Octber 2016
+ *  Created on: 21 October 2016  / Edit: DonSaber - Feb 7 2018
  * author: 		Sebastien CAPOU (neskweek@gmail.com) and Andras Kun (kun.andras@yahoo.de)
  * Source :  https://github.com/Protonerd/FX-SaberOS
 ://github.com/neskweek/LightSaberOS
@@ -30,6 +30,7 @@ extern ConfigModeSubStatesEnum PrevConfigModeSubStates;
 extern unsigned long sndSuppress;
 extern bool hum_playing;
 extern int8_t modification;
+extern int8_t orientation;
 extern bool play;
 extern int16_t value;
 #ifdef JUKEBOX
@@ -89,7 +90,28 @@ extern bool fireblade;
 
 void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonActionType, int8_t incrementSign=1){
     if (ConfigModeSubStates == CS_VOLUME and ButtonActionType==SINGLE_CLICK) {
-      confParseValue(storage.volume, 5, 30, 1*incrementSign);
+      orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1): // switch oriz back
+              // action
+              break;              
+            case (2): // switch oriz back
+              // action
+              break;              
+            case (3): // switch oriz back
+              // action
+              break;
+            case (4): // switch down
+              confParseValue(storage.volume, 5, 30, -1*incrementSign);
+              break;
+            case (5): // switch up
+              confParseValue(storage.volume, 5, 30, incrementSign);
+              break;
+          }
+      //confParseValue(storage.volume, 5, 30, 1*incrementSign);
       storage.volume = value;
       BladeMeter(ledPins, value*100/30);
       Set_Volume(storage.volume);
@@ -99,7 +121,28 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
     }
     else if (ConfigModeSubStates == CS_SOUNDFONT and ButtonActionType==SINGLE_CLICK) {
       play = false;
-      confParseValue(storage.soundFont, 0, SOUNDFONT_QUANTITY - 1, 1*incrementSign);
+           orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1):
+              // action
+              break;              
+            case (2):
+              // action
+              break;              
+            case (3):
+              // action
+              break;
+            case (4): // switch down
+              confParseValue(storage.soundFont, 0, SOUNDFONT_QUANTITY - 1, -1*incrementSign);
+              break;
+            case (5): // switch up
+              confParseValue(storage.soundFont, 0, SOUNDFONT_QUANTITY - 1, incrementSign);
+              break;
+          }
+	    //confParseValue(storage.soundFont, 0, SOUNDFONT_QUANTITY - 1, 1*incrementSign);
       storage.soundFont = value;
       soundFont.setID(value);
       SinglePlay_Sound(soundFont.getMenu((storage.soundFont)*NR_FILE_SF));
@@ -112,7 +155,28 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
         ColorMixing(storage.sndProfile[storage.soundFont].mainColor,modification,MAX_BRIGHTNESS, SaturateColor);
       #else if COLOR_PROFILE
         if (ButtonActionType==SINGLE_CLICK){
-          confParseValue(modification, 0, 14, incrementSign);
+          orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1):
+              // action
+              break;              
+            case (2):
+              // action
+              break;              
+            case (3):
+              // action
+              break;
+            case (4): // switch down
+              confParseValue(modification, 0, COLORPROFILES_QUANTITY - 1, -1*incrementSign);
+              break;
+            case (5): // switch up
+              confParseValue(modification, 0, COLORPROFILES_QUANTITY - 1, incrementSign);
+              break;
+          }
+		//confParseValue(modification, 0, 14, incrementSign);
           modification = value;
           getColorFix(modification);
         }
@@ -129,7 +193,28 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
         ColorMixing(storage.sndProfile[storage.soundFont].clashColor,modification,MAX_BRIGHTNESS, SaturateColor);
       #else if COLOR_PROFILE
         if (ButtonActionType==SINGLE_CLICK){
-          confParseValue(modification, 0, 14, incrementSign);
+          orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1):
+              // action
+              break;              
+            case (2):
+              // action
+              break;              
+            case (3):
+              // action
+              break;
+            case (4): // switch downp
+              confParseValue(modification, 0, 14, -1*incrementSign);
+              break;
+            case (5): // switch up
+              confParseValue(modification, 0, 14, incrementSign);
+              break;
+          }
+		//confParseValue(modification, 0, 14, incrementSign);
           modification = value;
           getColorFix(modification);
         }
@@ -145,7 +230,28 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
         ColorMixing(storage.sndProfile[storage.soundFont].blasterboltColor,modification,MAX_BRIGHTNESS, SaturateColor);
       #else if COLOR_PROFILE
         if (ButtonActionType==SINGLE_CLICK){
-          confParseValue(modification, 0, 14, incrementSign);
+          orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1):
+              // action
+              break;              
+            case (2):
+              // action
+              break;              
+            case (3):
+              // action
+              break;
+            case (4): // switch down
+              confParseValue(modification, 0, 14, -1*incrementSign);
+              break;
+            case (5): // switch up
+              confParseValue(modification, 0, 14, incrementSign);
+              break;
+          }
+		//confParseValue(modification, 0, 14, incrementSign);
           modification = value;
           getColorFix(modification);
         }
@@ -158,7 +264,50 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
     }
   #endif // PIXELBLADE or STAR_LED  
     else if (ConfigModeSubStates == CS_FLICKERTYPE and ButtonActionType==SINGLE_CLICK) {
-      #ifdef LEDSTRINGS
+	orientation = GravityVector();
+          switch (orientation) {
+            case (0): // switch oriz back
+              NextConfigState();
+              break;
+            case (1):
+              // action
+              break;              
+            case (2):
+              // action
+              break;              
+            case (3):
+              // action
+              break;
+            case (4): // switch down
+              #ifdef LEDSTRINGS
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 2, -1*incrementSign); // max number of flicker types for LEDSTRINGS currently 3
+              #endif
+              #ifdef STAR_LED
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 2, -1*incrementSign); // max number of flicker types for STAR_LED currently 3
+              #endif
+              #ifdef ADF_PIXIE_BLADE
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 0, -1*incrementSign); // max number of flicker types for Adafruit Pixie currently 1
+              #endif
+            #ifdef PIXELBLADE
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 4, -1*incrementSign); // max number of flicker types for PIXELBLADE currently 5
+            #endif
+              break;
+            case (5): // switch up
+              #ifdef LEDSTRINGS
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 2, incrementSign); // max number of flicker types for LEDSTRINGS currently 3
+              #endif
+              #ifdef STAR_LED
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 2, incrementSign); // max number of flicker types for STAR_LED currently 3
+              #endif
+              #ifdef ADF_PIXIE_BLADE
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 0, incrementSign); // max number of flicker types for Adafruit Pixie currently 1
+              #endif
+            #ifdef PIXELBLADE
+                confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 4, incrementSign); // max number of flicker types for PIXELBLADE currently 5
+            #endif
+              break;
+          }    
+      /* #ifdef LEDSTRINGS
         confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 2, 1*incrementSign); // max number of flicker types for LEDSTRINGS currently 3
       #endif
       #ifdef STAR_LED
@@ -169,7 +318,7 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
       #endif
       #ifdef PIXELBLADE
         confParseValue(storage.sndProfile[storage.soundFont].flickerType, 0, 4, 1*incrementSign); // max number of flicker types for PIXELBLADE currently 5
-      #endif
+      #endif */
       storage.sndProfile[storage.soundFont].flickerType = value;
       #if defined PIXELBLADE
         if (value==2 or value==3 or value==4) {fireblade=true;}

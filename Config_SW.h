@@ -1,7 +1,7 @@
 /*
  * Config_SW.h
  *
- * Created on: 30 March 2017
+ * Created on: 30 March 2017 / Edit: DonSaber - Feb 7 2018
  * author:    Andras Kun (kun.andras@yahoo.de)
  * Source :  https://github.com/Protonerd/FX-SaberOS
  * This tab contains all settings necessary to define your saber board's electronic software configuration
@@ -114,7 +114,7 @@
  * BE VERY CAREFULL WITH THIS ONE OR 
  * YOU'LL BURN YOUR BLADE'S LED 
  ************************************/
-#define MAX_BRIGHTNESS    230
+#define MAX_BRIGHTNESS    250
 
 
 /* DEEP_SLEEP
