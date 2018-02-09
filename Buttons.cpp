@@ -145,6 +145,9 @@ void ConfigMenuButtonEventHandler(bool SaturateColor, ButtonActionEnum ButtonAct
 	    //confParseValue(storage.soundFont, 0, SOUNDFONT_QUANTITY - 1, 1*incrementSign);
       storage.soundFont = value;
       soundFont.setID(value);
+      getColor(storage.sndProfile[storage.soundFont].mainColor);
+      lightOn(ledPins, -1, currentColor);
+      delay(500);
       SinglePlay_Sound(soundFont.getMenu((storage.soundFont)*NR_FILE_SF));
       //Serial.print("soundfont   "); Serial.print(storage.soundFont); Serial.print("  Offset:   ");Serial.println(soundFont.getMenu((storage.soundFont)*NR_FILE_SF));
       delay(150);    
