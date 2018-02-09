@@ -119,9 +119,12 @@ void NextConfigState(){
         #if defined LS_FSM
           Serial.print(F("Sound font"));
         #endif        
-        lightOff();
+        //lightOff();
         SinglePlay_Sound(5);
         delay(600);
+	getColor(storage.sndProfile[storage.soundFont].mainColor);
+        lightOn(ledPins, -1, currentColor);
+        delay(500);
         SinglePlay_Sound(soundFont.getMenu((storage.soundFont)*NR_FILE_SF));
         delay(500);  
         break;
