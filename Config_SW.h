@@ -124,7 +124,7 @@
  * If you a device with a CPU wich is not
  * an Atmega328 : COMMENT THIS
  *************************************/
-#define DEEP_SLEEP
+//#define DEEP_SLEEP
 #if defined DEEP_SLEEP
   #define SLEEPYTIME      60000 //20 secs, after which the board will automatically go to sleep mode (to be implemented)
   #include <avr/sleep.h>
